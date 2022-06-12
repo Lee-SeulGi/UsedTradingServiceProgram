@@ -56,6 +56,7 @@ public class Mypage extends JFrame implements ActionListener, MouseListener {
    private Login login;
    private JLabel lbltaltae;
    private String use_name;
+private String user_res;
    
    private static String id;
 
@@ -173,8 +174,24 @@ public class Mypage extends JFrame implements ActionListener, MouseListener {
       userName.setFont(new Font("a소나무L", Font.BOLD, 23));
       userName.setBounds(119, 38, 73, 50);
       
+      
+      String userres = "SELECT user_res FROM User where user_id ='" + id + "';" ;
+      ResultSet rs_res = DB.DBselect(userres);
+      
+      try {
+         if(rs_res.next()) {   //sql문에 내용이 있을 때
+            user_res = rs_res.getString("user_res");
+            System.out.println(user_res);
+         } else { //내용이 없으면 false
+            System.out.println(id);
+            System.out.println("이름 전달 실패");
+         }
+      } catch (SQLException e1) {
+         e1.printStackTrace();
+      }
+      
       // 사용자 지역
-      userArea = new JLabel("인천");
+      userArea = new JLabel(user_res);
       userArea.setFont(new Font("a소나무L", Font.PLAIN, 15));
       userArea.setBounds(122, 62, 73, 50);
       
