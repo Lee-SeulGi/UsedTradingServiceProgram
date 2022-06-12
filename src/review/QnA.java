@@ -1,5 +1,4 @@
 package review;
-// 수정
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
+import db.DB;
 import profile.Mypage;
 
 
@@ -38,7 +38,21 @@ public class QnA extends JFrame implements ActionListener {
    private Mypage mypage;
    private String id;
 
-   public QnA(String title){
+   static String dbURL="jdbc:mysql://49.50.174.207/powerrainzo";
+   static String dbID="blue";
+   static String dbPassword="1234";
+	
+   public String getId() {
+		return id;
+   }
+	
+   public void setId(String id) {
+	   this.id = id;
+   }
+   
+   public QnA(String title, String id){
+	  this.id = id;
+	   
       setSize(500, 700);
       setLocationRelativeTo(null); 
       setTitle(title);
@@ -188,7 +202,8 @@ public class QnA extends JFrame implements ActionListener {
    }
 
    public static void main(String[] args) {
-      QnA qna = new QnA("자주 묻는 질문");
+	   DB.DBconnect(dbURL, dbID, dbPassword);
+//      QnA qna = new QnA("자주 묻는 질문");
 
    }
 
@@ -197,7 +212,7 @@ public class QnA extends JFrame implements ActionListener {
       Object obj = e.getSource();
       if(obj == btnBack) {
     	  mypage = new Mypage("마이페이지", id);
-    	  setVisible(false);
+    	  dispose();
       }
          
       

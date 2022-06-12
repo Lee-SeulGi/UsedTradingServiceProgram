@@ -349,9 +349,10 @@ public class Posting extends JFrame implements ActionListener{
 			}
 		}else if(obj == btnBack) {
 			mf = new MainFrame();
+			mf.setId(id);
 			setVisible(false);
 		}else if(obj == btnChat) {
-			chatS = new ChatServer("채팅서버");
+			chatS = new ChatServer("채팅서버", id);
 			setVisible(false);
 			Thread th = new Thread(chatS);
 			th.start();

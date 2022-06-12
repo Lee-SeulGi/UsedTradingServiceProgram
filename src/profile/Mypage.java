@@ -190,17 +190,6 @@ public class Mypage extends JFrame implements ActionListener, MouseListener {
       lblLogout.setBounds(335, 70, 100, 25);
       lblLogout.addMouseListener(this);
       
-//      font_Activity = new Font("a소나무L", Font.BOLD, 18);
-      
-      // 나의 활동 (관심 목록, 거래 후기)
-//      panelActivity = new JPanel();
-//      panelActivity.setBackground(Color.white);
-//      panelActivity.setBorder(new TitledBorder(new LineBorder(new Color(125, 230, 119), 2, true),"나의 활동",
-//            TitledBorder.DEFAULT_POSITION, TitledBorder.DEFAULT_POSITION, font_Activity));
-////      panelActivity.setLayout(new GridLayout(2, 1, 100, 5));
-//      panelActivity.setLayout(null);
-//      panelActivity.setBounds(33, 125, 380, 170);
-      
       // 관심 버튼
       btnInterest = new JButton(" 관심 목록                                   >");
       btnInterest.setFont(new Font("a소나무L", Font.PLAIN, 18));
@@ -209,10 +198,8 @@ public class Mypage extends JFrame implements ActionListener, MouseListener {
       btnInterest.setBackground(Color.WHITE);
       btnInterest.setBounds(48, 128, 350, 62);
       btnInterest.setBorder(BorderFactory.createLineBorder(new Color(158, 158, 158),1));
-//      btnReview.setBorderPainted(false);
       btnInterest.setFocusPainted(false);
       btnInterest.addActionListener(this);
-      
       
       // 거래 후기 버튼  
       ImageIcon iconReview = new ImageIcon("images/star.png");
@@ -225,7 +212,6 @@ public class Mypage extends JFrame implements ActionListener, MouseListener {
       btnReview.setBackground(Color.WHITE);
       btnReview.setBounds(48, 204, 350, 62);
       btnReview.setBorder(BorderFactory.createLineBorder(new Color(158, 158, 158),1));
-//      btnReview.setBorderPainted(false);
       btnReview.setFocusPainted(false);
       btnReview.addActionListener(this);
       
@@ -243,7 +229,6 @@ public class Mypage extends JFrame implements ActionListener, MouseListener {
       btnAsk.setBackground(Color.WHITE);
       btnAsk.setBounds(48, 280, 350, 62);
       btnAsk.setBorder(BorderFactory.createLineBorder(new Color(158, 158, 158),1));
-//      btnReview.setBorderPainted(false);
       btnAsk.setFocusPainted(false);
       btnAsk.addActionListener(this);
       
@@ -258,7 +243,6 @@ public class Mypage extends JFrame implements ActionListener, MouseListener {
       btnService.setBackground(Color.WHITE);
       btnService.setBounds(48, 355, 350, 62);
       btnService.setBorder(BorderFactory.createLineBorder(new Color(158, 158, 158),1));
-//      btnReview.setBorderPainted(false);
       btnService.setFocusPainted(false);
       btnService.addActionListener(this);
       
@@ -273,7 +257,6 @@ public class Mypage extends JFrame implements ActionListener, MouseListener {
       btnPolicy.setBackground(Color.WHITE);
       btnPolicy.setBounds(48, 432, 350, 62);
       btnPolicy.setBorder(BorderFactory.createLineBorder(new Color(158, 158, 158),1));
-//      btnReview.setBorderPainted(false);
       btnPolicy.setFocusPainted(false);
       btnPolicy.addActionListener(this);
       
@@ -303,7 +286,7 @@ public class Mypage extends JFrame implements ActionListener, MouseListener {
 
 	public static void main(String[] args) {
 		DB.DBconnect(dbURL, dbID, dbPassword);
-		new Mypage("마이페이지", id);
+//		new Mypage("마이페이지", id);
 	}
 
 
@@ -313,22 +296,23 @@ public class Mypage extends JFrame implements ActionListener, MouseListener {
       
       if(obj == btnBack) {
          mf = new MainFrame();
-         setVisible(false);
+         mf.setId(id);
+         dispose();
       }else if(obj == btnInterest) {
          iterest =new Interest(null);
-         setVisible(false);
-            //if(obj == Interest.getBtnExit())
+         dispose();
       }else if(obj == btnReview) {
          reivew = new Review(null);
-         setVisible(false);
+         dispose();
       }else if(obj == btnAsk) {
-         qna = new QnA("자주 묻는 질문");
+         qna = new QnA("자주 묻는 질문", id);
+         dispose();
       }else if(obj==btnService) {
-         service= new Service("서비스이용약관");
-         setVisible(false);
+         service= new Service("서비스이용약관", id);
+         dispose();
       }else if(obj == btnPolicy) {
-         policy = new Policy("개인정보처리방침");
-         setVisible(false);
+         policy = new Policy("개인정보처리방침", id);
+         dispose();
       }
    }
 
