@@ -291,7 +291,7 @@ public class ChatServer extends JFrame implements ActionListener, Runnable, Mous
 			if(JOptionPane.showConfirmDialog(this, "채팅창을 나가시겠습니까?\n대화내용은 복원되지않습니다.", "종료", 
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.CANCEL_OPTION) == JOptionPane.YES_OPTION) {
-				mf = new MainFrame();
+				mf = new MainFrame(null);
 				dispose();
 			}
 		}else if(obj == btnwritehugi){

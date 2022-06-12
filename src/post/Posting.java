@@ -348,7 +348,7 @@ public class Posting extends JFrame implements ActionListener{
 				JOptionPane.showMessageDialog(null, "이미 관심 목록에 있습니다.", "메시지", JOptionPane.ERROR_MESSAGE);
 			}
 		}else if(obj == btnBack) {
-			mf = new MainFrame();
+			mf = new MainFrame(null);
 			mf.setId(id);
 			setVisible(false);
 		}else if(obj == btnChat) {

@@ -214,7 +214,7 @@ public class Review extends JFrame implements ActionListener, MouseListener{
 	public void actionPerformed(ActionEvent e) {
 		Object obj =  e.getSource();
 		if(obj == btnExit) {//뒤로가기 버튼 누르면...
-			mf = new MainFrame();
+			mf = new MainFrame(null);
 			setVisible(false);
 		}else if(obj == btnHome) {//홈 버튼 누르면,,,
 			//ChatFrame cf = new ChatFrame();

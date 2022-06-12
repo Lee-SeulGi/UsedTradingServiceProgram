@@ -355,7 +355,7 @@ public class CreatePosting extends JFrame implements ActionListener{
 		if(obj == btnClose) {
 			// 입력된 값이 없으면 바로 종료
 			if(ctfTitle.getForeground().equals(Color.GRAY) && ctfPrice.getForeground().equals(Color.GRAY) && ctaContent.getForeground().equals(Color.GRAY)) {
-				mf = new MainFrame();
+				mf = new MainFrame(null);
 				mf.setId(id);
 				setVisible(false);
 			}
@@ -364,7 +364,7 @@ public class CreatePosting extends JFrame implements ActionListener{
 				if(JOptionPane.showConfirmDialog(this, "정말 글쓰기를 종료하시겠습니까?", "종료", 
 						JOptionPane.YES_NO_OPTION,
 						JOptionPane.CANCEL_OPTION) == JOptionPane.YES_OPTION) {
-					mf = new MainFrame();
+					mf = new MainFrame(null);
 					mf.setId(id);
 					setVisible(false);
 				}
@@ -411,7 +411,7 @@ public class CreatePosting extends JFrame implements ActionListener{
 //				contentCp = content;
 //				
 				JOptionPane.showMessageDialog(null, "게시물이 등록되었습니다.", "메시지", JOptionPane.PLAIN_MESSAGE);
-				mf = new MainFrame();
+				mf = new MainFrame(null);
 				mf.setId(id);
 //				posting = new Posting("게시물 보기", null, al, id);
 				dispose();

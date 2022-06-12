@@ -70,6 +70,7 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener{
 	private JLabel lblprof;
 	private Posting posting;
 	private Mypage myP;
+	private MainFrame mf;
 	
 	private String id;
 //	int i;
@@ -79,10 +80,12 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener{
 	private JTable table;
 	private TableModel data;
 	private ArrayList<String> al;
-//	public String getId() {
+	private String keyword;
+
+	//	public String getId() {
 //		return id;
 //	}
-//	
+//
 	public String getId() {
 		return id;
 	}
@@ -99,15 +102,21 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener{
 	
 //	private static MainFrame m;
 
-	public MainFrame() {
+	public MainFrame(String keyword) {
+		
 		setTitle("메인");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setLocation(500, 80);
 		setSize(500,700);
 		setLocationRelativeTo(this); 
 		setLayout(new BorderLayout());
-
-
+		
+		if(keyword == null) {
+			this.keyword = "";
+		} else {
+			this.keyword = keyword;
+		}
+		
 		setNorth();
 		setCenter();
 		setSouth();
@@ -145,6 +154,7 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener{
 		serchbtn.setPreferredSize(new Dimension(80, 27));
 		serchbtn.setContentAreaFilled(false);
 		serchbtn.setFocusPainted(false);
+		serchbtn.addActionListener(this);
 		
 		northserchjp.add(tf);
 		northserchjp.add(serchbtn);
@@ -219,7 +229,7 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener{
 		sp.setPreferredSize(new Dimension(470, 490));
 		
 		MainListDB dao = new MainListDB();
-		ArrayList<MainListGAP> list = dao.getUserList();
+		ArrayList<MainListGAP> list = dao.getUserList(keyword);
 		
 		for(MainListGAP v: list) {
 			String name = v.getName();
@@ -288,6 +298,7 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener{
 		ImageIcon iconhome = new ImageIcon("images/house.png");
 		btnhome = new JButton(iconhome);
 		btnhome.setPreferredSize(new Dimension(35, 50));
+		btnhome.addActionListener(this);
 		
 		ImageIcon iconplus = new ImageIcon("images/plus.png");
 		btnplus = new JButton(iconplus);
@@ -417,6 +428,14 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener{
 		}else if(obj == btnheart) {
 			gunsim = new Interest(this, id);
 			dispose();
+		}else if(obj == serchbtn) {
+			keyword = tf.getText();
+			mf = new MainFrame(keyword);
+			mf.setId(id);
+			this.setVisible(false);
+		}else if(obj == btnhome) {
+			keyword = "";
+			mf = new MainFrame(keyword);
 		}
 	}
 

@@ -357,7 +357,7 @@ public class Login extends JFrame implements MouseListener, ActionListener {
 						//adminForm = new UserList();
 						this.setVisible(false);
 					} else {//관리자가 아니면
-						mf = new MainFrame();
+						mf = new MainFrame(null);
 						//ID값 보내기
 						mf.setId(id);
 						//mf.setname(name);

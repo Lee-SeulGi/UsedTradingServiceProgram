@@ -159,7 +159,7 @@ public class report extends JFrame implements ActionListener{
 				JOptionPane.showMessageDialog(this, "신고하는 이유를 선택해주세요.", "오류", JOptionPane.ERROR_MESSAGE);
 			}else {
 				JOptionPane.showMessageDialog(this, "신고가 처리되었습니다.\n감사합니다.", "신고", JOptionPane.PLAIN_MESSAGE);
-				mf = new MainFrame();
+				mf = new MainFrame(null);
 				dispose();
 			}
 		}else if(obj == btnBack) {

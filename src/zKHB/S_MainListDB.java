@@ -12,20 +12,23 @@ public class S_MainListDB {
 	
 	private ResultSet rs;
 
-	public ArrayList<S_MainListGAP> getUserList(){
+	public ArrayList<S_MainListGAP> getUserList(String keyword){
 		
-		String maintf = S_MainFrame.tftext;
+//		String maintf = S_MainFrame.tftext;
 		
 		ArrayList<S_MainListGAP> list = new ArrayList<S_MainListGAP>();
 		
-		String sql = "SELECT * from Post";
-		String sqltf = "select * from Post where post_title like '%" + maintf + "%'";
+//		String sql = "SELECT * from Post";
+		String sql = "select * from Post where post_title like '%" + keyword + "%'";
+		String sqltf = "select * from Post where post_title like '%" + keyword + "%'";
 	
-		if(S_MainFrame.i == 0) {
-			rs = DB.DBselect(sql);
-		}else {
-			rs = DB.DBselect(sqltf);
-		}
+//		if(S_MainFrame.i == 0) {
+//			rs = DB.DBselect(sql);
+//		}else {
+//			rs = DB.DBselect(sqltf);
+//		}
+		
+		rs = DB.DBselect(sql);
 		
 		try {
 			while(rs.next()) {

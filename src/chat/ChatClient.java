@@ -273,7 +273,7 @@ private JPanel panelCenter;
          if(JOptionPane.showConfirmDialog(this, "채팅창을 나가시겠습니까?\n대화내용은 복원되지않습니다.", "종료", 
                JOptionPane.YES_NO_OPTION,
                JOptionPane.CANCEL_OPTION) == JOptionPane.YES_OPTION) {
-            mf = new MainFrame();
+            mf = new MainFrame(null);
             mf.setId(id);
             dispose();
          }

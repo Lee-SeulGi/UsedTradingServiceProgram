@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.print.Pageable;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -92,7 +93,17 @@ public class S_MainFrame extends JFrame implements MouseListener, ActionListener
 	private S_Login sl;
 	public static String tftext;
 	public static int i = 0;
-	
+	private String keyword = "";
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
 
 	public S_MainFrame() {
 
@@ -213,15 +224,26 @@ public class S_MainFrame extends JFrame implements MouseListener, ActionListener
 		String[] colName = { "제목", "가격", "상태","사용기간","판매자"};
 		tableModel = new DefaultTableModel(colName, 0);
 		table = new JTable(tableModel); // TableModel를 이용
-		
 		//table스타일-셀너비/높이,정렬
 		settablestyle();
+		
 		JScrollPane sp = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS
 				, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		sp.setPreferredSize(new Dimension(470, 490));
 		
+		RunMainListDB();
+		
+		table.addMouseListener(this);
+		
+		centerjp.add(sp);
+		add(centerjp, BorderLayout.CENTER);
+	}
+
+
+	private void RunMainListDB() {
+		
 		S_MainListDB dao = new S_MainListDB();
-		ArrayList<S_MainListGAP> list = dao.getUserList();
+		ArrayList<S_MainListGAP> list = dao.getUserList(keyword);
 		
 		for(S_MainListGAP v: list) {
 			String title = v.getTitle();
@@ -233,12 +255,11 @@ public class S_MainFrame extends JFrame implements MouseListener, ActionListener
 			Object str[] = {title, price, state, term, name};
 			
 			tableModel.addRow(str);
-		}
-		table.addMouseListener(this);
-		centerjp.add(sp);
-		add(centerjp, BorderLayout.CENTER);
+			
+			
+			
+		}System.out.println(tableModel.getRowCount());
 	}
-
 
 
 	private void settablestyle() {
@@ -272,7 +293,6 @@ public class S_MainFrame extends JFrame implements MouseListener, ActionListener
 	    table.getTableHeader().setBackground(new Color(125, 230, 119));
 	    
 	}
-
 
 	private void setSouth() {
 		JPanel southjp = new JPanel();
@@ -388,11 +408,25 @@ public class S_MainFrame extends JFrame implements MouseListener, ActionListener
 //		}
 		
 		if(obj == serchbtn) {
-			i += 1;
-			System.out.println(i);
+//			int sacje = tableModel.getRowCount();
+//			tableModel.fireTableRowsDeleted(0, sacje);
+//			int count = tableModel.getRowCount();
+//			System.out.println("chg " + tableModel.getRowCount());
+//			for (int j = 1; j < 5 ; j++) {
+//				tableModel.removeRow(j);
+//			}
+//			System.out.println(tableModel.getRowCount());
+////			System.out.println(1);
+//			i += 1;
 			tftext = tf.getText();
+			System.out.println(tftext);
+//			RunMainListDB();
+			
 		}else if(obj == btnhome){
+			
 			i = 0;
+			RunMainListDB();
+			
 		}
 			
 
