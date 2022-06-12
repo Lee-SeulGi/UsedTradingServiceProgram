@@ -436,6 +436,7 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener{
 		}else if(obj == btnhome) {
 			keyword = "";
 			mf = new MainFrame(keyword);
+			this.setVisible(false);
 		}
 	}
 
