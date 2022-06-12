@@ -299,7 +299,7 @@ public class Mypage extends JFrame implements ActionListener, MouseListener {
          mf.setId(id);
          dispose();
       }else if(obj == btnInterest) {
-         iterest =new Interest(null);
+         iterest =new Interest(null, id);
          dispose();
       }else if(obj == btnReview) {
          reivew = new Review(null);

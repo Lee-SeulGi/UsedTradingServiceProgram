@@ -36,6 +36,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
+import H_Test.Login;
 import db.DB;
 import main.MainFrame;
 import post.Posting;
@@ -64,21 +65,13 @@ public class Interest extends JFrame implements ActionListener, MouseListener{
 	private ResultSet rs;
 	private JTable Liketable;
 	private JScrollPane scrolledTable;
+	private String Myid;
 	
-	private static String id;
+	static String id;
 	
-	public String getId() {
-	      return id;
-	   }
-
-	   public void setId(String id) {
-	      this.id = id;
-	   }
-	   
-//	   public InterestTest(String title, String id) {
-//	      this.id = id;
-//	   }
-	//DB연결
+	
+	
+	   //DB연결
 	static String dbURL="jdbc:mysql://49.50.174.207/powerrainzo";
 	static String dbID="blue";
 	static String dbPassword="1234";
@@ -129,9 +122,11 @@ public class Interest extends JFrame implements ActionListener, MouseListener{
 	
 	
 
-	public Interest(MainFrame mainFrame) {
+	public Interest(MainFrame mainFrame, String id) {
 		this.mainFrame = mainFrame;
-	
+//		String iD = Login.Myid;
+//		this.id = Login.Myid;
+		this.id = id;
 		setTitle("관심목록");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		setLocation(350, 5);
@@ -221,21 +216,21 @@ public class Interest extends JFrame implements ActionListener, MouseListener{
 		p1 = new JPanel();
 		p1.setLayout(new FlowLayout(FlowLayout.LEFT));
 		p1.setBackground(Color.white);
-		p1.setBorder(BorderFactory.createEmptyBorder(10,20,0,10));
+		p1.setBorder(BorderFactory.createEmptyBorder(40,60,0,10));//위,왼쪽,아래,오른
 
 		
 		
 		
-		p2 = new JPanel();
-		p2.setLayout(new FlowLayout(FlowLayout.LEFT));
-		p2.setBackground(Color.WHITE);
-		p2.setBorder(BorderFactory.createEmptyBorder(10,20,0,0));
-		
+//		p2 = new JPanel();
+//		p2.setLayout(new FlowLayout(FlowLayout.LEFT));
+//		p2.setBackground(Color.WHITE);
+//		p2.setBorder(BorderFactory.createEmptyBorder(10,20,0,0));
+//		
 		
 		
 		
 		//프로필 버튼 이미지 넣기
-		ImageIcon iconProfile = new ImageIcon("images/na.png");
+		ImageIcon iconProfile = new ImageIcon("images/user.png");
 		Image img = iconProfile.getImage();
 		Image imgsize = img.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		ImageIcon imgcha = new ImageIcon(imgsize);
@@ -244,38 +239,31 @@ public class Interest extends JFrame implements ActionListener, MouseListener{
 		
 		
 		
-		// 사용자 이름 설정
-	      this.id = id;
+		  //사용자 이름 설정
 	      
-	      //String username = "SELECT user_name FROM User where user_id ='" + id + "';" ;
-	      //ResultSet rs = DB.DBselect(username);
+	      String username = "SELECT user_name FROM User where user_id ='" + id + "';" ;
+	      ResultSet rs = DB.DBselect(username);
+	      		
 	      
 	      try {
 	         if(rs.next()) {   //sql문에 내용이 있을 때
 	            use_name = rs.getString("user_name");
+	            
 	            System.out.println(use_name);
 	         } else { //내용이 없으면 false
 	            System.out.println(id);
-	            System.out.println("dddddd");
+	            System.out.println("오류");
 	         }
 	      } catch (SQLException e1) {
 	         e1.printStackTrace();
 	      }
-	      
-	      profilelbl = new JLabel(use_name);
-	      profilelbl.setFont(new Font("a소나무L",Font.BOLD, 25));
+	     
+	    profilelbl = new JLabel(use_name);
+	    profilelbl.setFont(new Font("a소나무L",Font.BOLD, 25));
 		
-		
-		//관심 설정 이미지
-		ImageIcon iconH = new ImageIcon("images/heart.png");
-		Image imgH = iconH.getImage();
-		Image imgHsize = imgH.getScaledInstance(27, 27, Image.SCALE_SMOOTH);
-		ImageIcon imgHcha = new ImageIcon(imgHsize);
-		
-		lblH = new JLabel(imgHcha);
-		lbl2 = new JLabel("내 관심목록");
-		lbl2.setFont(new Font("a소나무L", Font.PLAIN, 17));
-		
+	
+	    lbl2 = new JLabel("   님의 관심목록");
+	    lbl2.setFont(new Font("a소나무L",Font.PLAIN, 20));
 		//테이블 
 		SetLikeTable();
 		
@@ -283,17 +271,14 @@ public class Interest extends JFrame implements ActionListener, MouseListener{
 		
 		p = new JPanel();
 		p.setBackground(Color.WHITE);
-		p.setBorder(BorderFactory.createEmptyBorder(0,20,40,20)); //위,왼쪽,아래,오른
-		
-		
+		p.setBorder(BorderFactory.createEmptyBorder(30,20,40,20)); //위,왼쪽,아래,오른
 		
 		
 		p1.add(lblprofile);
 		p1.add(profilelbl);
-		p2.add(lblH);
-		p2.add(lbl2);
-		PanMid.add(p1, BorderLayout.NORTH);
-		PanMid.add(p2, BorderLayout.CENTER);
+		
+		p1.add(lbl2);
+		PanMid.add(p1);
 		p.add(scrolledTable);
 		PanCen.add(PanMid, BorderLayout.NORTH);
 		PanCen.add(p, BorderLayout.CENTER);
@@ -303,8 +288,9 @@ public class Interest extends JFrame implements ActionListener, MouseListener{
     private void SetLikeTable() {
     	
     	boolean check = false;
+    	this.id = id;
     	
-
+    	
 		Likemodel = new DefaultTableModel(header,0);///header ?
 		
 		Liketable = new JTable(Likemodel);
@@ -352,20 +338,20 @@ public class Interest extends JFrame implements ActionListener, MouseListener{
 	         tcm.getColumn(i).setCellRenderer(dtcr);
 	      }
 	     
-		
 	    
-	    String sql = "select * from Post";
-//	    		"SELECT post_title, post_price,user_name"
-//	    		+ "  from Like "
-//	    		+ "where like_id ='" + id+ "';"  ;
-//	    //user_id ='" + id + "';"
+	  //나의 관심목록 출력
+	   
+	    
+	    String sql = "SELECT * FROM Interest"
+	    		+ " where love_id = '" + id +  "';" ;
+
 	    ResultSet rs = DB.DBselect(sql);
 		
 		try {
 			int row =1;
 			while(rs.next()) {
 				Vector record = new Vector<>();
-				//record.add(Integer.toString(row++));
+				
 				record.add(rs.getString("post_title"));
 				record.add(rs.getString("post_price"));
 				record.add(rs.getString("user_name"));
@@ -383,14 +369,15 @@ public class Interest extends JFrame implements ActionListener, MouseListener{
 		
 		DB.DBconnect(dbURL, dbID, dbPassword);
 		
-		InterestTest it = new InterestTest(null);
-		
+		Interest it = new Interest(null, id);
+		System.out.println(id);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj =  e.getSource();
 		if(obj == getBtnExit()) {//뒤로가기 버튼 누르면...
 			mf = new MainFrame();
+			mf.setId(id);
 			setVisible(false);
 		}
 	}
@@ -398,11 +385,11 @@ public class Interest extends JFrame implements ActionListener, MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Object obj = e.getSource();
-		if(e.getClickCount() == 1) {
-			
-
-		setVisible(false);
-		}
+//		if(e.getClickCount() == 1) {
+//			
+//		//posting= new Posting("게시물", null);
+//		setVisible(false);
+//		}
 //		if(obj == Liketable) {
 //			int row=Liketable.getSelectedRow();	
 //			int col=Liketable.getSelectedColumn();
@@ -440,5 +427,13 @@ public class Interest extends JFrame implements ActionListener, MouseListener{
 
 	public JButton getBtnExit() {
 		return btnExit;
+	}
+
+	public String getId() {
+		return Myid;
+	}
+	
+	public void setId(String Myid) {
+		this.Myid = Myid;
 	}
 }

@@ -415,7 +415,7 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener{
 			review = new Review(this);
 			dispose();
 		}else if(obj == btnheart) {
-			gunsim = new Interest(this);
+			gunsim = new Interest(this, id);
 			dispose();
 		}
 	}
