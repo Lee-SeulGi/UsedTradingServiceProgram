@@ -343,15 +343,22 @@ public class Login extends JFrame implements MouseListener, ActionListener {
 			
 			if (id.isEmpty() && pw.isEmpty()) {	//id와 pw 값이 비어있는지 확인
 				JOptionPane.showMessageDialog(null, "아이디와 비밀번호를 입력해주세요.", "로그인 실패", JOptionPane.OK_CANCEL_OPTION); //INFORMATION_MESSAGE, QUESTION_MESSAGE, WARNING_MESSAGE, ERROR_MESSAGE
+				idntf.setText("");
+				pwtf.setText("");
+				idntf.requestFocus();
 			} else if (id.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "아이디를 입력해주세요.", "로그인 실패", JOptionPane.OK_CANCEL_OPTION);
+				idntf.setText("");
+				idntf.requestFocus();
 			} else if (pw.isEmpty()){
 				JOptionPane.showMessageDialog(null, "비밀번호를 입력해주세요.", "로그인 실패", JOptionPane.OK_CANCEL_OPTION);
+				pwtf.setText("");
+				pwtf.requestFocus();
 			} else { 
 				
 				boolean check = checkIDPW(id, pw);
 				if(check) {
-					JOptionPane.showMessageDialog(null, id + "님 안녕하세요.", "로그인 성공", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, id + "로 로그인되셨습니다.", "로그인 성공", JOptionPane.INFORMATION_MESSAGE);
 					
 					if(id.equals("Admin")) {//관리자 페이지 연결
 						//adminForm = new UserList();
@@ -364,7 +371,7 @@ public class Login extends JFrame implements MouseListener, ActionListener {
 						this.setVisible(false);
 					}
 				} else {//아디이와 비밀번호가 없을시 id,pw 초기화
-					JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호를 확인해주세요.", "로그인 실패", JOptionPane.OK_CANCEL_OPTION);
+					JOptionPane.showMessageDialog(null, "입력하신 정보를 확인해주세요.", "로그인 실패", JOptionPane.OK_CANCEL_OPTION);
 					idntf.setText("");
 					pwtf.setText("");
 					idntf.requestFocus();
