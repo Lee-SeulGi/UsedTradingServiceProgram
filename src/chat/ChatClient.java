@@ -37,6 +37,7 @@ import javax.swing.text.Document;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
+import db.DB;
 import main.MainFrame;
 import post.Posting;
 import review.WriteReview;
@@ -86,10 +87,14 @@ private JPanel panelCenter;
    private WriteReview writeR;
    
    private ChatServer chatserver;
-private String id;
+   private String id;
    
-   public ChatClient(String title, ChatServer chatserver) {
-	   
+   static String dbURL="jdbc:mysql://49.50.174.207/powerrainzo";
+   static String dbID="blue";
+   static String dbPassword="1234";
+
+   public ChatClient(String title, ChatServer chatserver, String id) {
+	  this.id = id;
 	  this.chatserver = chatserver;
 	   
       //연결 중
@@ -269,6 +274,7 @@ private String id;
                JOptionPane.YES_NO_OPTION,
                JOptionPane.CANCEL_OPTION) == JOptionPane.YES_OPTION) {
             mf = new MainFrame();
+            mf.setId(id);
             dispose();
          }
       }else if(obj == btnwritehugi){
@@ -389,6 +395,7 @@ private String id;
      }
      
    public static void main(String[] args) {
+	   DB.DBconnect(dbURL, dbID, dbPassword);
    }
 
 @Override

@@ -19,6 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import db.DB;
+
 public class Policy extends JFrame implements ActionListener {
 	
 	private JPanel sPanelNorth;
@@ -29,9 +31,24 @@ public class Policy extends JFrame implements ActionListener {
 	private JTextArea taServiceData;
 	private Mypage mypage;
 
-	private String id;
+	private static String id;
 	
-	public Policy(String title) {
+	static String dbURL="jdbc:mysql://49.50.174.207/powerrainzo";
+	static String dbID="blue";
+	static String dbPassword="1234";
+	
+	public String getId() {
+		return id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
+		
+	}
+	
+	public Policy(String title, String id) {
+		this.id = id;
+		
 		setTitle(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocation(200, 50);
@@ -149,7 +166,8 @@ public class Policy extends JFrame implements ActionListener {
 	
 	
 	public static void main(String[] args) {
-		new Policy("개인정보처리방침");
+		DB.DBconnect(dbURL, dbID, dbPassword);
+//		new Policy("개인정보처리방침", id);
 	}
 
 	@Override
@@ -157,7 +175,7 @@ public class Policy extends JFrame implements ActionListener {
 		Object obj = e.getSource();
 		if(obj == btnBack) {
 		mypage = new Mypage("마이페이지", id);
-		setVisible(false);
+		dispose();
 		
 	}
 	

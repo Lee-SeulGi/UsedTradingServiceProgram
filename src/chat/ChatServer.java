@@ -39,6 +39,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import chat.ChatServer;
+import db.DB;
 import main.MainFrame;
 import post.Posting;
 import review.WriteReview;
@@ -91,10 +92,16 @@ public class ChatServer extends JFrame implements ActionListener, Runnable, Mous
 	private Posting gesimul;
 	private MainFrame mf;
 	private WriteReview writeR;
-	private String id;
+	private ChatServer chatserver;
+	private static String id;
+	
+	static String dbURL="jdbc:mysql://49.50.174.207/powerrainzo";
+	static String dbID="blue";
+	static String dbPassword="1234";
 
-	public ChatServer(String title) {
-
+	public ChatServer(String title, String id) {
+		this.id = id;
+		
 		//연결 중
 		StyleConstants.setItalic(Wait, true);
 		StyleConstants.setFontSize(Wait, 12);
@@ -351,7 +358,8 @@ public class ChatServer extends JFrame implements ActionListener, Runnable, Mous
 
 	
 	public static void main(String[] args) {
-		ChatServer cs = new ChatServer("구매자");
+		DB.DBconnect(dbURL, dbID, dbPassword);
+		ChatServer cs = new ChatServer("구매자", id);
 		Thread th = new Thread(cs);
 		th.start();
 	}
@@ -443,7 +451,7 @@ public class ChatServer extends JFrame implements ActionListener, Runnable, Mous
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(e.getClickCount() == 2) {
-			cc = new ChatClient("판매자", this);
+			cc = new ChatClient("판매자", chatserver, id);
 			Thread th = new Thread(cc);
 			th.start();
 		}

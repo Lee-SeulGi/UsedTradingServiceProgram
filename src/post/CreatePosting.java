@@ -356,6 +356,7 @@ public class CreatePosting extends JFrame implements ActionListener{
 			// 입력된 값이 없으면 바로 종료
 			if(ctfTitle.getForeground().equals(Color.GRAY) && ctfPrice.getForeground().equals(Color.GRAY) && ctaContent.getForeground().equals(Color.GRAY)) {
 				mf = new MainFrame();
+				mf.setId(id);
 				setVisible(false);
 			}
 			// 하나라도 입력된 값이 있다면 메시지 박스 보이기
@@ -364,7 +365,7 @@ public class CreatePosting extends JFrame implements ActionListener{
 						JOptionPane.YES_NO_OPTION,
 						JOptionPane.CANCEL_OPTION) == JOptionPane.YES_OPTION) {
 					mf = new MainFrame();
-					
+					mf.setId(id);
 					setVisible(false);
 				}
 			}
@@ -411,6 +412,7 @@ public class CreatePosting extends JFrame implements ActionListener{
 //				
 				JOptionPane.showMessageDialog(null, "게시물이 등록되었습니다.", "메시지", JOptionPane.PLAIN_MESSAGE);
 				mf = new MainFrame();
+				mf.setId(id);
 //				posting = new Posting("게시물 보기", null, al, id);
 				dispose();
 			}

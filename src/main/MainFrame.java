@@ -351,7 +351,7 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener{
 			post();
 			
 			posting = new Posting ("게시물 보기", this, al, id);
-			setVisible(false);
+			dispose();
 		}
 	}
 
@@ -410,13 +410,13 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener{
 		//게시물 작성
 		if(obj == btnplus) {
 			cp = new CreatePosting("게시물 작성", this, id);
-			setVisible(false);
+			dispose();
 		}else if(obj == btnreview) {
 			review = new Review(this);
-			setVisible(false);
+			dispose();
 		}else if(obj == btnheart) {
 			gunsim = new Interest(this);
-			setVisible(false);
+			dispose();
 		}
 	}
 
