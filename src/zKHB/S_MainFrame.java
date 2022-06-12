@@ -92,18 +92,8 @@ public class S_MainFrame extends JFrame implements MouseListener, ActionListener
 	private String Myid;
 	private S_Login sl;
 	public static String tftext;
-	public static int i = 0;
-	private String keyword = "";
-
-	public String getKeyword() {
-		return keyword;
-	}
-
-
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
-
+	public static int i;
+	
 
 	public S_MainFrame() {
 
@@ -243,7 +233,7 @@ public class S_MainFrame extends JFrame implements MouseListener, ActionListener
 	private void RunMainListDB() {
 		
 		S_MainListDB dao = new S_MainListDB();
-		ArrayList<S_MainListGAP> list = dao.getUserList(keyword);
+		ArrayList<S_MainListGAP> list = dao.getUserList();
 		
 		for(S_MainListGAP v: list) {
 			String title = v.getTitle();
@@ -256,9 +246,7 @@ public class S_MainFrame extends JFrame implements MouseListener, ActionListener
 			
 			tableModel.addRow(str);
 			
-			
-			
-		}System.out.println(tableModel.getRowCount());
+		}
 	}
 
 
@@ -408,22 +396,14 @@ public class S_MainFrame extends JFrame implements MouseListener, ActionListener
 //		}
 		
 		if(obj == serchbtn) {
-//			int sacje = tableModel.getRowCount();
-//			tableModel.fireTableRowsDeleted(0, sacje);
-//			int count = tableModel.getRowCount();
-//			System.out.println("chg " + tableModel.getRowCount());
-//			for (int j = 1; j < 5 ; j++) {
-//				tableModel.removeRow(j);
-//			}
-//			System.out.println(tableModel.getRowCount());
-////			System.out.println(1);
-//			i += 1;
+			int sacje = tableModel.getRowCount();
+			tableModel.fireTableRowsDeleted(0, sacje);
+			i += 1;
 			tftext = tf.getText();
-			System.out.println(tftext);
-//			RunMainListDB();
-			
+			RunMainListDB();
 		}else if(obj == btnhome){
-			
+			int sacje = tableModel.getRowCount();
+			tableModel.fireTableRowsDeleted(0, sacje);
 			i = 0;
 			RunMainListDB();
 			
