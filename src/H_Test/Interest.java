@@ -123,7 +123,8 @@ public class Interest extends JFrame implements ActionListener, MouseListener{
 	
 
 	public Interest() {
-		String iD = Login.Myid;
+//		String iD = Login.Myid;
+		this.id = Login.Myid;
 		setTitle("관심목록");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		setLocation(350, 5);
@@ -238,7 +239,7 @@ public class Interest extends JFrame implements ActionListener, MouseListener{
 		
 		  //사용자 이름 설정
 	      
-	      String username = "SELECT user_name FROM User where user_id ='" + Myid + "';" ;
+	      String username = "SELECT user_name FROM User where user_id ='" + id + "';" ;
 	      ResultSet rs = DB.DBselect(username);
 	      		
 	      
@@ -340,7 +341,7 @@ public class Interest extends JFrame implements ActionListener, MouseListener{
 	   
 	    
 	    String sql = "SELECT * FROM Interest"
-	    		+ " where love_id = '" + Myid +  "';" ;
+	    		+ " where love_id = '" + id +  "';" ;
 
 	    ResultSet rs = DB.DBselect(sql);
 		
