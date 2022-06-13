@@ -12,8 +12,6 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -28,7 +26,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -107,7 +104,7 @@ private JPanel panelCenter;
       StyleConstants.setBold(Itsme, true);
       //본문 글자 - 너
 //      StyleConstants.setForeground(Sandebang, Color.black);
-      
+      setResizable(false);
       setTitle(title);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setLocation(1000, 80);

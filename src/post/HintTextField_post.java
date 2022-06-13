@@ -1,14 +1,11 @@
 package post;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.beans.BeanProperty;
 
 import javax.swing.JTextField;
-import javax.swing.text.Document;
 
 public class HintTextField_post extends JTextField{
 

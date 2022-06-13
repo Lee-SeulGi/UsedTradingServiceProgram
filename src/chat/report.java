@@ -2,7 +2,6 @@ package chat;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -40,7 +39,7 @@ public class report extends JFrame implements ActionListener{
 
 	public report(String title, int x, int y) {
 		
-		
+		setResizable(false);
 		setTitle(title);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocation(x, y);

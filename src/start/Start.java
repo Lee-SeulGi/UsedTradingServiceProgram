@@ -1,28 +1,18 @@
 package start;
 
 
-import java.awt.BorderLayout;
-
 import java.awt.Color;
-
 import java.awt.Dimension;
-
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-
 import javax.swing.ImageIcon;
-
 import javax.swing.JButton;
-
 import javax.swing.JFrame;
-
 import javax.swing.JLabel;
-
 import javax.swing.JPanel;
 
 import db.DB;
@@ -33,17 +23,11 @@ import login.Login;
 public class Start extends JFrame implements ActionListener {
 
 	private ImageIcon mainimg;
-
 	private JLabel mainlbl;
-
 	private JPanel mainpanel;
-
 	private JButton startbutton;
-
 	private JPanel startpanel;
-
 	private JPanel imgpanel;
-
 	private Login lg;
 
 	static String dbURL="jdbc:mysql://49.50.174.207/powerrainzo";
@@ -55,6 +39,7 @@ public class Start extends JFrame implements ActionListener {
 		setSize(500, 700);
 		setLocationRelativeTo(this); 
 		setTitle("시작창");
+		setResizable(false);
 
 		mainpanel = new JPanel();
 		mainpanel.setLayout(null);

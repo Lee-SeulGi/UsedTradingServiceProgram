@@ -87,7 +87,7 @@ public class Login extends JFrame implements MouseListener, ActionListener {
 			setLocationRelativeTo(this); 
 
 			setTitle(title);
-			
+			setResizable(false);
 			
 
 			

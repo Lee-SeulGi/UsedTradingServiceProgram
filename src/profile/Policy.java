@@ -49,6 +49,7 @@ public class Policy extends JFrame implements ActionListener {
 	public Policy(String title, String id) {
 		this.id = id;
 		
+		setResizable(false);
 		setTitle(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocation(200, 50);

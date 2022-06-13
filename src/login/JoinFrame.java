@@ -94,6 +94,7 @@ public JoinFrame(String title, Login login) {
 	
 	this.login = login;
 		
+		setResizable(false);
 		setTitle(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(500,700);

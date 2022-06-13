@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -29,7 +28,6 @@ import main.MainFrame;
 import post.HintTextArea_post;
 
 public class WriteReview extends JFrame implements ActionListener {
-
 
 
 Font font = new Font("a아이스께끼", Font.BOLD, 23);
@@ -51,11 +49,26 @@ private JPanel panelsouth;
 private JPanel panelBack;
 
 private JButton btnBack;
+private String id;
+
+
+
+public String getId() {
+	return id;
+}
+
+
+public void setId(String id) {
+	this.id = id;
+}
 
 
 
 
-public WriteReview() {
+public WriteReview(String id) {
+		this.id = id;
+	
+		setResizable(false);
 	   setSize(500, 700);
 	   setLocationRelativeTo(this); 
 	   setTitle("거래후기작성");
@@ -301,18 +314,6 @@ private void setSouth() {
 }
 
 
-
-
-
-public static void main(String[] args) {
-
-      WriteReview rv = new WriteReview();
-
-   }
-
-
-
-
 @Override
 public void actionPerformed(ActionEvent e) {
 	Object obj = e.getSource();
@@ -320,7 +321,7 @@ public void actionPerformed(ActionEvent e) {
         if(JOptionPane.showConfirmDialog(this, "후기를 작성하지않고 거래를 끝내시겠습니까?\n(추후 후기 작성은 불가합니다.)", "거래 완료", 
               JOptionPane.YES_NO_OPTION,
               JOptionPane.CANCEL_OPTION) == JOptionPane.YES_OPTION) {
-           MainFrame mf = new MainFrame();
+           MainFrame mf = new MainFrame(null);
            dispose();
         }
      }else if(obj == btnsent) {
@@ -334,7 +335,7 @@ public void actionPerformed(ActionEvent e) {
     	 else if(JOptionPane.showConfirmDialog(this, "후기를 전송하시겠습니까?\n(추후 후기 수정은 불가합니다.)", "거래 완료", 
               JOptionPane.YES_NO_OPTION,
               JOptionPane.CANCEL_OPTION) == JOptionPane.YES_OPTION) {
-           MainFrame mf  = new MainFrame();
+           MainFrame mf  = new MainFrame(null);
            dispose();
         }
      }
