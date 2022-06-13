@@ -477,9 +477,10 @@ public JoinFrame(String title, Login login) {
 				String signresidence = combo2.getSelectedItem().toString();
 				
 				
-				String sqlSign = "INSERT into User" + "(user_id, user_name, user_pw, user_phonenum, user_residence)"
+				String sqlSign = "INSERT into User" + "(user_id, user_name, user_pw, user_phonenum, user_res)"
 						+ "values('" + signid + "', '" + signname + "', '" + signpw + "', '" + signphonenum + "', '" + signresidence + "')";
 				int rs = DB.DBinsert(sqlSign);
+				
 
 				JOptionPane.showMessageDialog(this, " 회원가입이 완료되었습니다.\n 로그인을 해주세요.", "회원가입"
 						, JOptionPane.PLAIN_MESSAGE);
