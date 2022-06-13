@@ -7,12 +7,16 @@ import java.util.ArrayList;
 import db.DB;
 
 public class MainListDB {
+	private ResultSet rs;
+
 	public ArrayList<MainListGAP> getUserList(String keyword){
 		
 		ArrayList<MainListGAP> list = new ArrayList<MainListGAP>();
+
+			String sql = "select * from Post where post_title like '%" + keyword + "%'";
+			rs = DB.DBselect(sql);
+
 		
-		String sql = "select * from Post where post_title like '%" + keyword + "%'";
-		ResultSet rs = DB.DBselect(sql);
 		
 		try {
 			while(rs.next()) {

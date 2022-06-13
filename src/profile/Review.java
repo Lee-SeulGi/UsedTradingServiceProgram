@@ -23,10 +23,6 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
-import javax.swing.ListSelectionModel;
-import javax.swing.border.Border;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
 
 import main.MainFrame;
 import review.Receive;
@@ -48,10 +44,21 @@ public class Review extends JFrame implements ActionListener, MouseListener{
 	private MainFrame mf;
 	private JLabel lblN9;
 	private Receive receive;
+	private String id;
 
-	public Review(MainFrame mainFrame) {
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public Review(MainFrame mainFrame, String id) {
+		this.id = id;
 		this.mainFrame = mainFrame;
 		
+		setResizable(false);
 		setTitle("거래 후기");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		setLocation(350,5);
@@ -92,19 +99,8 @@ public class Review extends JFrame implements ActionListener, MouseListener{
 		ImageIcon imgcha = new ImageIcon(imgsize);
 		btnExit = new JButton(imgcha);
 		btnExit.addActionListener(this);
-		
-//		ImageIcon iconHome = new ImageIcon("images/HOME.png");
-//	    Image img2 = iconHome.getImage();
-//	    Image changeImg2 = img2.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
-//	    ImageIcon changeIcon2 = new ImageIcon(changeImg2);
-//	    btnHome = new JButton(changeIcon2);
-//	    btnHome.addActionListener(this);
-	    
 	    btnExit.setContentAreaFilled(false);
 	    btnExit.setFocusPainted(false);
-	    
-//	    btnHome.setContentAreaFilled(false);
-//	    btnHome.setFocusPainted(false);
 	    
 	    
 	    lblN1 = new JLabel();
@@ -118,10 +114,8 @@ public class Review extends JFrame implements ActionListener, MouseListener{
 	    lblN9 = new JLabel();
 
 	    btnExit.setContentAreaFilled(false);
-//	    btnHome.setContentAreaFilled(false);
 	    
 	    toolPan.add(btnExit);
-//		toolPan.add(btnHome);
 		toolPan.add(lblN1);
 		toolPan.add(lblN2);
 		toolPan.add(lblN3);
@@ -162,7 +156,7 @@ public class Review extends JFrame implements ActionListener, MouseListener{
 		ImageIcon imgcha = new ImageIcon(imgsize);
 		lblprofile = new JLabel(imgcha);
 		
-		profilelbl = new JLabel("김조구만");
+		profilelbl = new JLabel(id);
 		profilelbl.setFont(new Font("a소나무L",Font.BOLD, 25));
 		
 		ImageIcon iconI = new ImageIcon("images/star.png");
@@ -205,10 +199,6 @@ public class Review extends JFrame implements ActionListener, MouseListener{
 		PanCen.add(p, BorderLayout.CENTER);
 	}
 
-
-	public static void main(String[] args) {
-		Review rv = new Review(null);
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

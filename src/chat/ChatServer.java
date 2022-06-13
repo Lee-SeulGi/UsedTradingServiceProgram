@@ -36,25 +36,14 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
 
-import chat.ChatServer;
 import db.DB;
 import main.MainFrame;
 import post.Posting;
 import review.WriteReview;
 
 public class ChatServer extends JFrame implements ActionListener, Runnable, MouseListener{
-	
-//	private JPanel panelCenter;
-//	private JPanel panelSouth;
-//	
-//	private JTextField tf;
-//	private JButton btn;
-//	private JButton btn2;
-	
-//	private JTextArea ta;
-	
+
 	private JPanel panelCenter;
 	private JPanel panelSouth;
 	
@@ -112,7 +101,7 @@ public class ChatServer extends JFrame implements ActionListener, Runnable, Mous
 	    //본문 글자 - 너
 //	    StyleConstants.setForeground(Sandebang, Color.black);
 		
-		
+	    setResizable(false);
 		setTitle(title);
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		setLocation(500, 80);
@@ -298,7 +287,7 @@ public class ChatServer extends JFrame implements ActionListener, Runnable, Mous
 			if(JOptionPane.showConfirmDialog(this, "거래 확정 여부는 판매자만 선택 할 수 있습니다.\n후기를 작성하시겠습니까?", "거래확정", 
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.CANCEL_OPTION) == JOptionPane.YES_OPTION) {
-				writeR = new WriteReview();
+				writeR = new WriteReview(id);
 				dispose();
 			}
 		}else if(obj == btnphoto) {
@@ -438,7 +427,6 @@ public class ChatServer extends JFrame implements ActionListener, Runnable, Mous
 	  //기본 텍스트 (+스타일)
 	  private void insertDocContent(String text, SimpleAttributeSet TextStyle)
 	  {
-		  
 	    setInsertiontoDocEnd();
 	    Document doc = jtp.getDocument();
 	    try {

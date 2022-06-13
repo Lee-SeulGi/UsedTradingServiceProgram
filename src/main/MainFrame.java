@@ -12,10 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -32,20 +28,19 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
+import db.DB;
 import login.HintTextField;
 import post.CreatePosting;
 import post.Posting;
 import profile.Interest;
 import profile.Mypage;
 import profile.Review;
-import db.DB;
 
 public class MainFrame extends JFrame implements MouseListener, ActionListener{
 	
@@ -106,6 +101,7 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener{
 		
 		setTitle("메인");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 		//setLocation(500, 80);
 		setSize(500,700);
 		setLocationRelativeTo(this); 
@@ -128,9 +124,8 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener{
 
 	private void setNorth() {
 		JPanel upjp = new JPanel();
-		upjp.setLayout(new GridLayout(2,1));
 		upjp.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));	
-		upjp.setPreferredSize(new Dimension(0, 110));
+		upjp.setPreferredSize(new Dimension(0, 80));
 		upjp.setBackground(Color.WHITE);
 		
 		JPanel northjp = new JPanel();
@@ -165,46 +160,13 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener{
 		ImageIcon imgprof2 = new ImageIcon(imgsize2);
 		lblprof = new JLabel(imgprof2);
 		lblprof.addMouseListener(this);
-		//lblprof.setSize(35, 35);
 		
 		northjp.add(lbldino);
 		northjp.add(northserchjp);
 		northjp.add(lblprof);
 		
-		JPanel northjp2 = new JPanel();
-		northjp2.setLayout(null);
-		northjp2.setBackground(Color.white);
-		
-		final String[] Seoul = {"종로구","중구","용산구","성동구","광진구","동대문구"
-				,"중랑구","성북구","강북구","도봉구","노원구","은평구"
-				,"서대문구","마포구","양천구","강서구","구로구","금천구"
-				,"영등포구","동작구","관악구","서초구","강남구","송파구","강동구"};
-		
-		seoulvec  = new Vector<>();	
-		for (int i = 0; i < Seoul.length; i++) {
-			seoulvec.add(Seoul[i]);
-		}
-		combo = new JComboBox<>(seoulvec);
-		combo.setFont(new Font("a소나무L", Font.PLAIN, 13));
-		combo.setBackground(Color.white);
-		combo.setBounds(395, 17, 80, 30);
-		
-//		vecarray = new Vector<>();		
-//		vecarray.add(" 최신순 ");
-//		vecarray.add(" 인기순 ");
-//		vecarray.add(" 낮은가격순 ");
-//		vecarray.add(" 높은가격순 ");
-//		comboarray = new JComboBox<>(vecarray);
-//		comboarray.setFont(new Font("a소나무L", Font.PLAIN, 13));
-//		comboarray.setBackground(Color.white);
-//		comboarray.setBounds(400, 20, 80, 30);
-		
-		
-		northjp2.add(combo);
-//		northjp2.add(comboarray);
 		
 		upjp.add(northjp);
-		upjp.add(northjp2);
 		
 		add(upjp, BorderLayout.NORTH);
 		
@@ -226,7 +188,7 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener{
 		settablestyle();
 		JScrollPane sp = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS
 				, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		sp.setPreferredSize(new Dimension(470, 490));
+		sp.setPreferredSize(new Dimension(470, 525));
 		
 		MainListDB dao = new MainListDB();
 		ArrayList<MainListGAP> list = dao.getUserList(keyword);
@@ -423,20 +385,22 @@ public class MainFrame extends JFrame implements MouseListener, ActionListener{
 			cp = new CreatePosting("게시물 작성", this, id);
 			dispose();
 		}else if(obj == btnreview) {
-			review = new Review(this);
-			dispose();
+			review = new Review(this, id);
 		}else if(obj == btnheart) {
 			gunsim = new Interest(this, id);
 			dispose();
-		}else if(obj == serchbtn) {
+		}
+		else if(obj == serchbtn) {
 			keyword = tf.getText();
 			mf = new MainFrame(keyword);
 			mf.setId(id);
-			this.setVisible(false);
-		}else if(obj == btnhome) {
+			dispose();
+		}
+		else if(obj == btnhome) {
 			keyword = "";
 			mf = new MainFrame(keyword);
-			this.setVisible(false);
+			mf.setId(id);
+			dispose();
 		}
 	}
 

@@ -91,6 +91,7 @@ public class CreatePosting extends JFrame implements ActionListener{
 		setSize(500, 700);
 		setLocationRelativeTo(this); 
 		setLayout(new BorderLayout());
+		setResizable(false);
 		
 		cPanelNorth();
 		cPanelCenter();

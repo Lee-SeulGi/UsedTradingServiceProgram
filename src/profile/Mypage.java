@@ -57,6 +57,7 @@ public class Mypage extends JFrame implements ActionListener, MouseListener {
    private JLabel lbltaltae;
    private String use_name;
 private String user_res;
+private JLabel lblMore;
    
    private static String id;
 
@@ -75,6 +76,7 @@ private String user_res;
    public Mypage(String title, String id) {
       this.id = id;
       
+      setResizable(false);
       setTitle(title);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //      setLocation(800, 50);
@@ -107,26 +109,19 @@ private String user_res;
       lblMyT = new JLabel(changeIconMtTitle);
       lblMyT.setPreferredSize(new Dimension(335, 40));
       
-      ImageIcon iconMore = new ImageIcon("images/more.png");
-      Image img4 = iconMore.getImage();
-      Image changeImg4 = img4.getScaledInstance(22, 22, Image.SCALE_SMOOTH);
-      ImageIcon changeIcon4 = new ImageIcon(changeImg4);
-      btnMore = new JButton(changeIcon4);
-      btnMore.setPreferredSize(new Dimension(55, 37));
+      lblMore = new JLabel();
+      lblMore.setPreferredSize(new Dimension(55, 37));
       
       // 버튼의 내용영역 채우기 사용 안함
       btnBack.setContentAreaFilled(false);
-      btnMore.setContentAreaFilled(false);
       // 버튼이 선택되었을때 생기는 테두리 사용 안함
       btnBack.setFocusPainted(false);
-      btnMore.setFocusPainted(false);
       // 버튼을 투명하게 설정
       btnBack.setOpaque(false);
-      btnMore.setOpaque(false);
       
       pPanelNorth.add(btnBack);
       pPanelNorth.add(lblMyT);
-      pPanelNorth.add(btnMore);
+      pPanelNorth.add(lblMore);
       
       add(pPanelNorth,BorderLayout.NORTH);
       pPanelNorth.setBackground(Color.WHITE);
@@ -282,7 +277,6 @@ private String user_res;
       lblVersion.setFont(new Font("a소나무L", Font.PLAIN, 14));
       lblVersion.setBounds(153, 505, 200, 54);
       
-      lbltaltae = new JLabel("회원 탈퇴하기");
       
       pPanelCenter.add(pPanelCenterC);
       
@@ -319,7 +313,7 @@ private String user_res;
          iterest =new Interest(null, id);
          dispose();
       }else if(obj == btnReview) {
-         reivew = new Review(null);
+         reivew = new Review(null, id);
          dispose();
       }else if(obj == btnAsk) {
          qna = new QnA("자주 묻는 질문", id);

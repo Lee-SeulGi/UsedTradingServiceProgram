@@ -33,6 +33,8 @@ public class Receive extends JFrame implements ActionListener {
 	private String id;
 
 	public Receive() {
+		
+		setResizable(false);
 		setTitle("받은 후기");
 		setSize(500, 700);
 		setLayout(new BorderLayout());

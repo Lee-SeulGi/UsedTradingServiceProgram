@@ -2,15 +2,11 @@ package post;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -101,6 +97,7 @@ public class Posting extends JFrame implements ActionListener{
 		setSize(500, 700);
 		setLocationRelativeTo(this);
 		setLayout(new BorderLayout());
+		setResizable(false);
 		
 		panelNorth();
 		panelCenter();
@@ -352,7 +349,7 @@ public class Posting extends JFrame implements ActionListener{
 			mf.setId(id);
 			setVisible(false);
 		}else if(obj == btnChat) {
-			chatS = new ChatServer("채팅서버", id);
+			chatS = new ChatServer("구매자", id);
 			setVisible(false);
 			Thread th = new Thread(chatS);
 			th.start();
