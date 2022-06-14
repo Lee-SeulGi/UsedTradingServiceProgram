@@ -306,7 +306,7 @@ private JLabel lblMore;
       Object obj = e.getSource();
       
       if(obj == btnBack) {
-         mf = new MainFrame(null);
+         mf = new MainFrame(id);
          mf.setId(id);
          dispose();
       }else if(obj == btnInterest) {
