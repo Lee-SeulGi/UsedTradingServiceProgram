@@ -56,11 +56,17 @@ public class Interest extends JFrame implements ActionListener, MouseListener{
    private ResultSet rs;
    private JTable Liketable;
    private JScrollPane scrolledTable;
-   private String Myid;
+//   private String Myid;
    
    static String id;
    
-   
+   public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
    
       //DB연결
    static String dbURL="jdbc:mysql://49.50.174.207/powerrainzo";
@@ -517,11 +523,4 @@ public class Interest extends JFrame implements ActionListener, MouseListener{
       return btnExit;
    }
 
-   public String getId() {
-      return Myid;
-   }
-   
-   public void setId(String Myid) {
-      this.Myid = Myid;
-   }
 }
