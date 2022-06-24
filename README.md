@@ -13,3 +13,6 @@
 
 ## 📜 DB구조
 <img src="https://user-images.githubusercontent.com/89624548/175448606-4848d1f6-ef70-4728-be96-d06b7738c033.png" width="650" height="440"/>
+
+## 🎬 실행영상
+<img src="https://user-images.githubusercontent.com/89624548/175463513-862d7dd8-dcd8-496f-a16d-0f9c630b8c0e.gif" width="950" height="550"/>
