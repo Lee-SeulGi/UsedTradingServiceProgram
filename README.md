@@ -9,7 +9,7 @@
 
 ## 🗓️ 진행스케줄
 <!-- ![진행스케줄](https://user-images.githubusercontent.com/89624548/175196058-c402fffd-fc25-4dec-8239-a4a2887e022e.png) -->
-<img src="https://user-images.githubusercontent.com/89624548/175196058-c402fffd-fc25-4dec-8239-a4a2887e022e.png" width="950" height="450"/>
+<img src="https://user-images.githubusercontent.com/89624548/175196058-c402fffd-fc25-4dec-8239-a4a2887e022e.png" width="950" height="440"/>
 
 ## 📜 DB구조
-<img src="https://user-images.githubusercontent.com/89624548/175196478-d39fbfbe-2188-4106-b8a5-1a4a57da45e0.png" width="400" height="420"/>
+<img src="https://user-images.githubusercontent.com/89624548/175448606-4848d1f6-ef70-4728-be96-d06b7738c033.png" width="650" height="440"/>
