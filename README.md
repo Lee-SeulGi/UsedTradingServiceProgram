@@ -1,6 +1,6 @@
 # [다이노마켓] 중고거래 서비스 프로그램
 <p> 
-<img src="https://img.shields.io/badge/Java-007396.svg?style=for-the-badge&logo=Java&logoColor=white"/>
+<img src="https://img.shields.io/badge/Java-3776AB.svg?style=for-the-badge&logo=Java&logoColor=white"/>
 </p>
 
 ## 📑 프로젝트 목표/내용
